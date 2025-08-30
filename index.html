@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía - Estructuras Algorítmicas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .infographic {
+            max-width: 1200px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(90deg, #3498db, #2c3e50);
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .structures-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 30px;
+            gap: 30px;
+        }
+        
+        .structure {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .structure:hover {
+            transform: translateY(-5px);
+        }
+        
+        .structure-header {
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        
+        .sequential .structure-header {
+            background: linear-gradient(90deg, #3498db, #2980b9);
+        }
+        
+        .conditional .structure-header {
+            background: linear-gradient(90deg, #e74c3c, #c0392b);
+        }
+        
+        .loop .structure-header {
+            background: linear-gradient(90deg, #2ecc71, #27ae60);
+        }
+        
+        .structure-content {
+            padding: 25px;
+        }
+        
+        .structure-content p {
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .keyword {
+            background: #f8f9fa;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #333;
+            border: 1px solid #e9ecef;
+        }
+        
+        .visual {
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .flow {
+            display: flex;
+            align-items: center;
+        }
+        
+        .flow-box {
+            width: 60px;
+            height: 60px;
+            background: #3498db;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            margin: 0 5px;
+            font-weight: bold;
+        }
+        
+        .flow-arrow {
+            font-size: 24px;
+            color: #3498db;
+        }
+        
+        .decision {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background: #e74c3c;
+            transform: rotate(45deg);
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+        
+        .decision::before {
+            content: 'SI';
+            position: absolute;
+            top: 25px;
+            left: 15px;
+            transform: rotate(-45deg);
+            color: white;
+            font-weight: bold;
+        }
+        
+        .decision::after {
+            content: 'NO';
+            position: absolute;
+            bottom: 15px;
+            right: 25px;
+            transform: rotate(-45deg);
+            color: white;
+            font-weight: bold;
+        }
+        
+        .loop-visual {
+            width: 100px;
+            height: 100px;
+            border: 5px solid #2ecc71;
+            border-radius: 50%;
+            border-top-color: transparent;
+            position: relative;
+            animation: loop 3s infinite linear;
+            margin: 0 auto;
+        }
+        
+        .loop-visual::before {
+            content: '⟳';
+            position: absolute;
+            top: 35px;
+            left: 35px;
+            font-size: 30px;
+            color: #2ecc71;
+        }
+        
+        @keyframes loop {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .example {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .example h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .example h3 i {
+            margin-right: 10px;
+        }
+        
+        .example-content {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            overflow-x: auto;
+        }
+        
+        .sequential .example {
+            border-left-color: #3498db;
+        }
+        
+        .conditional .example {
+            border-left-color: #e74c3c;
+        }
+        
+        .loop .example {
+            border-left-color: #2ecc71;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .structures-container {
+                flex-direction: column;
+            }
+            
+            .structure {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+        <div class="header">
+            <h1>Estructuras Algorítmicas</h1>
+            <p>Fundamentos de la programación y el diseño de algoritmos</p>
+        </div>
+        
+        <div class="structures-container">
+            <div class="structure sequential">
+                <div class="structure-header">
+                    <h2>Estructuras Secuenciales</h2>
+                </div>
+                <div class="structure-content">
+                    <div class="visual">
+                        <div class="flow">
+                            <div class="flow-box">1</div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-box">2</div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-box">3</div>
+                        </div>
+                    </div>
+                    <p>Ejecutan instrucciones en un orden estricto y lineal, una después de la otra, sin desvíos ni interrupciones. Son la base de todo algoritmo y garantizan un flujo predecible.</p>
+                    <div class="keywords">
+                        <span class="keyword">Lineal</span>
+                        <span class="keyword">Orden</span>
+                        <span class="keyword">Predecible</span>
+                        <span class="keyword">Paso a Paso</span>
+                        <span class="keyword">Ininterrumpido</span>
+                    </div>
+                    
+                    <div class="example">
+                        <h3><i class="fas fa-mug-hot"></i> Ejemplo: Preparar café</h3>
+                        <div class="example-content">
+                            1. Calentar agua<br>
+                            2. Colocar café en la taza<br>
+                            3. Verter agua caliente<br>
+                            4. Añadir azúcar (opcional)<br>
+                            5. Revolver y servir
+                        </div>
+                    </div>
+                    
+                    <div class="example">
+                        <h3><i class="fas fa-code"></i> Ejemplo: Calcular área de triángulo</h3>
+                        <div class="example-content">
+                            base = float(input("Base: "))<br>
+                            altura = float(input("Altura: "))<br>
+                            area = (base * altura) / 2<br>
+                            print("El área es:", area)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="structure conditional">
+                <div class="structure-header">
+                    <h2>Estructuras Condicionales</h2>
+                </div>
+                <div class="structure-content">
+                    <div class="visual">
+                        <div class="decision"></div>
+                    </div>
+                    <p>Permiten que el programa tome decisiones y elija entre diferentes caminos de ejecución basados en el cumplimiento de una condición. Brindan adaptabilidad y dinamismo al software.</p>
+                    <div class="keywords">
+                        <span class="keyword">Decisión</span>
+                        <span class="keyword">Bifurcación</span>
+                        <span class="keyword">Condición</span>
+                        <span class="keyword">Selección</span>
+                        <span class="keyword">Alternativa</span>
+                    </div>
+                    
+                    <div class="example">
+                        <h3><i class="fas fa-umbrella"></i> Ejemplo: Salir con paraguas</h3>
+                        <div class="example-content">
+                            SI está lloviendo ENTONCES<br>
+                            &nbsp;&nbsp;Llevar paraguas<br>
+                            SINO<br>
+                            &nbsp;&nbsp;No llevar paraguas<br>
+                            FIN SI
+                        </div>
+                    </div>
+                    
+                    <div class="example">
+                        <h3><i class="fas fa-code"></i> Ejemplo: Verificar número par</h3>
+                        <div class="example-content">
+                            numero = int(input("Número: "))<br>
+                            if numero % 2 == 0:<br>
+                            &nbsp;&nbsp;print("El número es par")<br>
+                            else:<br>
+                            &nbsp;&nbsp;print("El número es impar")
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="structure loop">
+                <div class="structure-header">
+                    <h2>Estructuras Cíclicas</h2>
+                </div>
+                <div class="structure-content">
+                    <div class="visual">
+                        <div class="loop-visual"></div>
+                    </div>
+                    <p>Repiten un bloque de instrucciones múltiples veces mientras se cumpla una condición específica. Automatizan procesos recurrentes y optimizan el código.</p>
+                    <div class="keywords">
+                        <span class="keyword">Repetición</span>
+                        <span class="keyword">Bucle</span>
+                        <span class="keyword">Iteración</span>
+                        <span class="keyword">Ciclo</span>
+                        <span class="keyword">Automático</span>
+                    </div>
+                    
+                    <div class="example">
+                        <h3><i class="fas fa-bread-slice"></i> Ejemplo: Tostar pan</h3>
+                        <div class="example-content">
+                            MIENTRAS el pan no esté dorado HACER<br>
+                            &nbsp;&nbsp;Continuar tostando<br>
+                            &nbsp;&nbsp;Verificar color<br>
+                            FIN MIENTRAS<br>
+                            Retirar pan de la tostadora
+                        </div>
+                    </div>
+                    
+                    <div class="example">
+                        <h3><i class="fas fa-code"></i> Ejemplo: Contar hasta 10</h3>
+                        <div class="example-content">
+                            contador = 1<br>
+                            while contador <= 10:<br>
+                            &nbsp;&nbsp;print(contador)<br>
+                            &nbsp;&nbsp;contador = contador + 1<br>
+                            print("¡Conteo completado!")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Sebastian Herrera/Ing Electronica</p>
+        </div>
+    </div>
+</body>
+</html>
